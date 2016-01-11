@@ -185,8 +185,5 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 			
 		}
 		f.setVisible(true);
-		
 	}
-	
-	
 }
