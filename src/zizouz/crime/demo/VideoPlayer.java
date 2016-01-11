@@ -44,7 +44,13 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		this.player.setOnEndOfMedia(new Runnable() {
 			@Override public void run() 
 			{
-				player.pause();
+				if (auto) 
+				{
+					player.stop();
+					player.play();
+				}
+				else
+					player.pause();
 			}
 		});
 	}
