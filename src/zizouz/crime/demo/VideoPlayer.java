@@ -154,13 +154,21 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		f.setLocationRelativeTo(null);
 		f.pack();
 		
+		f.add(new java.awt.KeyAdapter() {
+			@Override public void keyReleased(KeyEvent event) 
+			{
+				if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
+					com.apple.eawt.Application.getApplication().requestToggleFullScreen(f);
+			}
+		});
+		
+		com.apple.eawt.FullScreenUtilities.setWindowCanFullScreen(f, true);
+		
 		if (args.length > 1)
 		{
 			if (args[1] != "-f")
 				f.setVisible(true);
 				return;
-			
-			com.apple.eawt.FullScreenUtilities.setWindowCanFullScreen(f, true);
 			
 			f.setVisible(true);
 			
