@@ -7,7 +7,8 @@ This demo shows some very simple capabilities of how a hacker can collect inform
 from a computer, while appearing as a seemingly innocent application. This won't destroy
 any existing files, and will use information that is generally available from the 
 computer itself. It will also perform screen manipulations, and will also take 
-advantage of the `say` command line tool available on Mac OS X.
+advantage of the `say` command line tool available on Mac OS X. You can find more
+information in [specifics.](#specifics)
 
 
 -------------------------------
