@@ -136,7 +136,7 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		this.view = null;
 		this.pane = null;
 		this.fxScene = null;
-		
+		super.finalize();
 	}
 	// For Testing
 	public static void main(String[] args) 
