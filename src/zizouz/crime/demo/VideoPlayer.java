@@ -39,6 +39,7 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		
 		this.addComponentListener(this);
 		this.addKeyListener(this);
+		this.componentResized(null);
 		
 		this.setScene(this.fxScene);
 	}
