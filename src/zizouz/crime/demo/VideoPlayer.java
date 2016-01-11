@@ -49,6 +49,8 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 	protected final BorderPane pane;
 	protected final Scene fxScene;
 	
+	protected volatile boolean auto;
+	
 	@Override
 	public void keyPressed(KeyEvent event) 
 	{
@@ -72,6 +74,13 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 				if (playing)
 					this.player.play();
 				return;
+			case KeyEvent.VK_A:
+				if (this.auto)
+					this.auto = false;
+				else
+					this.auto = true;
+				
+				this.player.setAutoPlay(this.auto);
 		}
 	}
 	@Override
@@ -79,7 +88,32 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 	{
 		
 	}
-	
-	
+	@Override
+	public void componentResized(ComponentEvent event) 
+	{
+		this.view.setPreserveRatio(true);
+		this.view.setFitWidth(this.getWidth());
+		this.view.setFitHeight(this.getHeight());
+	}
+	@Override
+	public void componentMoved(ComponentEvent event) 
+	{
+		
+	}
+	@Override
+	public void componentMoved(ComponentEvent event) 
+	{
+		
+	}
+	@Override
+	public void componentShown(ComponentEvent event) 
+	{
+		
+	}
+	@Override
+	public void componentHidden(ComponentEvent event) 
+	{
+		
+	}
 	
 }
