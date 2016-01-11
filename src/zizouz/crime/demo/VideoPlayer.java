@@ -15,12 +15,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.Scene;
 
-import javax.swing.JFrame;
-
 public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListener, ComponentListener 
 {
 	private static final long serialVersionUID = 11521199786L;
-	public static final String path = new File("./Resources/intro.mp4").toURI().toString();
+	public static final String path = new File("./Resources/startO.mp4").toURI().toString();
 	
 	public VideoPlayer(String p) 
 	{
@@ -75,9 +73,9 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 					this.player.play();
 				return;
 			case KeyEvent.VK_ENTER:
-				boolean playing = this.player.getStatus().equals(Status.PLAYING);
+				boolean inter = this.player.getStatus().equals(Status.PLAYING);
 				this.player.stop();
-				if (playing)
+				if (inter)
 					this.player.play();
 				return;
 			case KeyEvent.VK_A:
@@ -100,11 +98,6 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		this.view.setPreserveRatio(true);
 		this.view.setFitWidth(this.getWidth());
 		this.view.setFitHeight(this.getHeight());
-	}
-	@Override
-	public void componentMoved(ComponentEvent event) 
-	{
-		
 	}
 	@Override
 	public void componentMoved(ComponentEvent event) 
@@ -135,7 +128,7 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 	// For Testing
 	public static void main(String[] args) 
 	{
-		String p;
+		String p = null;
 		VideoPlayer player;
 		
 		if (args.length > 0)
@@ -148,13 +141,13 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 			
 		javax.swing.JFrame f = new javax.swing.JFrame();
 		
-		f.add(p);
-		p.player.play();
+		f.add(player);
+		player.player.play();
 		f.getContentPane().setBackground(java.awt.Color.BLACK);
-		f.setLocationRelativeTo(null);
 		f.pack();
+		f.setLocationRelativeTo(null);
 		
-		f.add(new java.awt.KeyAdapter() {
+		f.addKeyListener(new java.awt.event.KeyAdapter() {
 			@Override public void keyReleased(KeyEvent event) 
 			{
 				if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -166,9 +159,11 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		
 		if (args.length > 1)
 		{
-			if (args[1] != "-f")
+			if (args[1] != "-f" && args[0] != "-f")
+			{
 				f.setVisible(true);
 				return;
+			}
 			
 			f.setVisible(true);
 			
@@ -176,15 +171,9 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 			com.apple.eawt.Application.getApplication().requestForeground(true);
 			
 		}
+		f.setVisible(true);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
