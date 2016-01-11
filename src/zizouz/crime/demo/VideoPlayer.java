@@ -22,11 +22,11 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 	private static final long serialVersionUID = 11521199786L;
 	public static final String path = new File("./Resources/intro.mp4").toURI().toString();
 	
-	public VideoPlayer() 
+	public VideoPlayer(String p) 
 	{
 		super();
 		
-		this.file = new Media(VideoPlayer.path);
+		this.file = new Media(p);
 		this.player = new MediaPlayer(this.file);
 		this.view = new MediaView(this.player);
 		
@@ -43,12 +43,17 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		
 		this.setScene(this.fxScene);
 	}
+	public VideoPlayer() 
+	{
+		this(VideoPlayer.path);
+	}
 	
-	protected final Media file;
-	protected final MediaPlayer player;
-	protected final MediaView view;
-	protected final BorderPane pane;
-	protected final Scene fxScene;
+	
+	protected Media file;
+	protected MediaPlayer player;
+	protected MediaView view;
+	protected BorderPane pane;
+	protected Scene fxScene;
 	
 	protected volatile boolean auto;
 	
@@ -116,5 +121,62 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 	{
 		
 	}
+	@Override
+	protected void finalize() 
+	{
+		this.player.dispose();
+		this.file = null;
+		this.player = null;
+		this.view = null;
+		this.pane = null;
+		this.fxScene = null;
+		
+	}
+	// For Testing
+	public static void main(String[] args) 
+	{
+		String p;
+		VideoPlayer player;
+		
+		if (args.length > 0)
+			p = args[0];
+			
+		if (p != null)
+			player = new VideoPlayer(p);
+		else
+			player = new VideoPlayer();
+			
+		javax.swing.JFrame f = new javax.swing.JFrame();
+		
+		f.add(p);
+		p.player.play();
+		f.getContentPane().setBackground(java.awt.Color.BLACK);
+		f.setLocationRelativeTo(null);
+		f.pack();
+		
+		if (args.length > 1)
+		{
+			if (args[1] != "-f")
+				f.setVisible(true);
+				return;
+			
+			com.apple.eawt.FullScreenUtilities.setWindowCanFullScreen(f, true);
+			
+			f.setVisible(true);
+			
+			com.apple.eawt.Application.getApplication().requestToggleFullScreen(f);
+			com.apple.eawt.Application.getApplication().requestForeground(true);
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
