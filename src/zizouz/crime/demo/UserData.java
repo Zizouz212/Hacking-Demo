@@ -1,5 +1,7 @@
 package zizouz.crime.demo;
 
+import java.io.File;
+
 class UserData 
 {
 	public static void getData() 
@@ -7,7 +9,6 @@ class UserData
 		name = System.getProperty("user.name").substring(0, 1).toUpperCase() + 
 				System.getProperty("user.name").substring(1, System.getProperty("user.name").length());
 		execPath = System.getProperty("user.dir");
-		userDesktop = System.getProperty("user.home") + "/Desktop";
 		userHome = System.getProperty("user.home");
 		
 		osName = System.getProperty("os.name");
@@ -15,11 +16,14 @@ class UserData
 		osArch = System.getProperty("os.arch");
 		
 		javaVers = System.getProperty("java.version"); 
+		
+		apps = new File("/Applications").listFiles();
+		desktop = new File(userHome + "/Desktop").listFiles();
+		docs = new File(userHome + "/Documents").listFiles();
 	}
 	
 	public static String name;
 	public static String execPath;
-	public static String userDesktop;
 	public static String userHome;
 	
 	public static String osName;
@@ -27,5 +31,17 @@ class UserData
 	public static String osArch;
 	
 	public static String javaVers;
+	
+	public static File[] apps;
+	public static File[] desktop;
+	public static File[] docs;
+	
+	public static String getOSName() 
+	{
+		return osName + " v" + osVers;
+	}
+	
+	
+	
 	
 }
