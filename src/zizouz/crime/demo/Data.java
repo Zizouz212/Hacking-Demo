@@ -2,7 +2,7 @@ package zizouz.crime.demo;
 
 import java.io.File;
 
-class UserData 
+class Data 
 {
 	public static void getData() 
 	{
