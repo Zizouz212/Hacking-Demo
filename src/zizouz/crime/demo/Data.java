@@ -1,5 +1,6 @@
 package zizouz.crime.demo;
 
+import java.awt.Image;
 import java.io.File;
 
 class Data 
@@ -41,7 +42,16 @@ class Data
 		return osName + " v" + osVers;
 	}
 	
+	// Image support
 	
+	public static java.util.List<Image> images = new java.util.ArrayList<Image>();
 	
+	public static void load() 
+	{
+		java.awt.Toolkit kit = java.awt.Toolkit.getDefaultToolkit();
+		for (File i : new File("./Resources/Images").listFiles()) 
+			images.add(kit.createImage(i.getAbsolutePath()));
+		
+	}
 	
 }
