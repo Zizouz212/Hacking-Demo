@@ -13,7 +13,6 @@ import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.UIManager;
-import javax.swing.text.StyledDocument;
 
 public class Paint extends javax.swing.JTextPane implements ActionListener 
 {
