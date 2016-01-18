@@ -1,4 +1,4 @@
-package zizouz.crime.demo;
+package zizouz212.crime.theft.demo;
 
 import java.io.File;
 
@@ -18,7 +18,7 @@ import javafx.scene.Scene;
 public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListener, ComponentListener 
 {
 	private static final long serialVersionUID = 11521199786L;
-	public static final String path = new File("./Resources/startO.mp4").toURI().toString();
+	public static final String path = new File("./Resources/video.mp4").toURI().toString();
 	
 	public VideoPlayer(String p) 
 	{
@@ -44,12 +44,14 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		this.player.setOnEndOfMedia(new Runnable() {
 			@Override public void run() 
 			{
+				player.pause();
+				
 				if (auto) 
 				{
 					player.stop();
 					player.play();
 				}
-				else
+				else 
 					player.pause();
 			}
 		});
@@ -136,7 +138,7 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		this.view = null;
 		this.pane = null;
 		this.fxScene = null;
-		super.finalize();
+		
 	}
 	// For Testing
 	public static void main(String[] args) 
@@ -155,7 +157,7 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 		javax.swing.JFrame f = new javax.swing.JFrame();
 		
 		f.add(player);
-		player.player.play();
+		
 		f.getContentPane().setBackground(java.awt.Color.BLACK);
 		f.pack();
 		f.setLocationRelativeTo(null);
@@ -185,5 +187,8 @@ public class VideoPlayer extends javafx.embed.swing.JFXPanel implements KeyListe
 			
 		}
 		f.setVisible(true);
+		player.player.play();
 	}
+	
+	
 }
